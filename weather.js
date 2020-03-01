@@ -44,8 +44,35 @@ $(document).ready(function(){
                 $('#weathernow').empty();
 
                 //current weather display on weathernow div.
-            }
+                var title = $('<h3>').addClass('card-title').text(data.name + ' (' + new Date().toLocaleDateString() + ')');
+                var card = $('<div>').addClass('card');
+                var wind = $('<p>').addClass('card-text').text('Wind Speed: ' + data.wind.speed + 'MPH');
+                var humid = $('<p>').addClass('card-text').text('Humidity: ' + data.main.humidity + '%');
+                var temp = $('<p>').addClass('card-text').text('Temperature: ' + data.main.temp + '°F');
+                var img = $('<img>').att('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + 'png');
 
+                // merge annf append to page
+                title.append(img);
+                cardBody.append(title, temp, humid, wind);
+                card.append(cardBody);
+                $('#weathernow').append(card);
+
+                getForecast(searchValue);
+                getUVIndex(data.coord.lat, data.coord.lon);
+            
+            },
+
+        });
+    }
+    // AJAX call to get forecast information
+    function getForecast(searchValue) {
+        $.ajax({
+            type: 'GET',
+			url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&appid=' + apikey,
+            dataType: 'json',
+            success: function(data){
+                $('#forecast')
+            }
         })
     }
 })
