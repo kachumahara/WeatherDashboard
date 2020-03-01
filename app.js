@@ -1,4 +1,4 @@
-// html document is ready
+// html document is ready to function
 $(document).ready(function() {
     var apikey = 'd902a298fbf27783a3efb9503fa1c23a';
     // calling event to grab and display weather status
