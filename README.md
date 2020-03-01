@@ -1,5 +1,5 @@
 
-##WEATHER DASHBOARD
+### WEATHER DASHBOARD
 Instruction: To build an open weather App using openweather API.
 
 I used html, css and javascript
