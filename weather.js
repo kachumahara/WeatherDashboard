@@ -25,7 +25,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'GET',
 			url:
-				'http://api.openweathermap.org/data/2.5/weather?q=' +
+				'https://api.openweathermap.org/data/2.5/weather?q=' +
 				searchValue +
 				'&appid=' +
 				apikey +
@@ -52,7 +52,7 @@ $(document).ready(function() {
                 var humid = $('<p>').addClass('card-text').text('Humidity: ' + data.main.humidity + '%');
                 var temp = $('<p>').addClass('card-text').text('Temperature: ' + data.main.temp + '°F');
                 var cardBody = $('<div>').addClass('card-body');
-                var img = $('<img>').attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + 'png');
+                var img = $('<img>').attr('src', 'https://openweathermap.org/img/w/' + data.weather[0].icon + 'png');
 
                 // merge and append to page
                 title.append(img);
@@ -71,7 +71,7 @@ $(document).ready(function() {
     function getForecast(searchValue) {
         $.ajax({
             type: 'GET',
-			url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&appid=' + apikey,
+			url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&appid=' + apikey,
             dataType: 'json',
             success: function(data){
                 $('#forecast').html('<h4 class="> 5-Day Forecast:</h4>').append('<div class="row">');
