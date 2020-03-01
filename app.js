@@ -2,7 +2,7 @@
 $(document).ready(function() {
     var apikey = 'd902a298fbf27783a3efb9503fa1c23a';
     // calling event to grab and display weather status
-    $('searchbtn').on('click', function(event) {
+    $('#searchbtn').on('click', function(event) {
         var searchValue = $('#search-input').val();
 
         $('#search-input').val('');
@@ -33,6 +33,7 @@ $(document).ready(function() {
 			dataType: 'json',
             success: function(data) {
                 //create history link for the search
+            
                 if (history.indexOf(searchValue) === -1) {
                    
                     history.push(searchValue);
