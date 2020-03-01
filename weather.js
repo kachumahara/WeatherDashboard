@@ -24,12 +24,13 @@ $(document).ready(function() {
         //function to create Ajax call from search input for weather status
         $.ajax({
             type: 'GET',
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=' +
-            searchValue +
-            '&appid=' +
-            apikey +
-            '&units=imperial',
-            dataType: 'json',
+			url:
+				'http://api.openweathermap.org/data/2.5/weather?q=' +
+				searchValue +
+				'&appid=' +
+				apikey +
+				'&units=imperial',
+			dataType: 'json',
             success: function(data) {
                 //create history link for the search
                 if (history.indexOf(searchValue) === -1) {
@@ -50,6 +51,7 @@ $(document).ready(function() {
                 var wind = $('<p>').addClass('card-text').text('Wind Speed: ' + data.wind.speed + 'MPH');
                 var humid = $('<p>').addClass('card-text').text('Humidity: ' + data.main.humidity + '%');
                 var temp = $('<p>').addClass('card-text').text('Temperature: ' + data.main.temp + '°F');
+                var cardBody = $('<div>').addClass('card-body');
                 var img = $('<img>').attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + 'png');
 
                 // merge and append to page
@@ -77,11 +79,11 @@ $(document).ready(function() {
                 //loop over all forecasts
                 for (var i = 0; i < data.list.length; i++) {
                     if (data.list[i].dt_txt.indexOf('15:00:00') !== -1) {
-                        var col = $('<div').addClass('col-md-2');
+                        var col = $('<div>').addClass('col-md-2');
                         var card = $('<div>').addClass('card bg-secondary text-white');
                         var body = $('<div>').addClass('card-body p-2');
                         var title = $('<h4>').addClass('card-text').text(new Date(data.list[i].dt_txt).toLocaleDateString());
-                        var img = $('<img>').att('src', 'http://openweathermap.org/img/w/' + data.list[1]. weather[0].icon + '.png');
+                        var img = $('<img>').attr('src', 'https://openweathermap.org/img/w/' + data.list[1]. weather[0].icon + '.png');
                         var p1 = $('<p>').addClass('card-text').text('Temp: ' + data.list[i].main.temp_max + ' °F');
                         var p2 = $('<p>').addClass('card-text').text('humidity: ' + data.list[i].main.humidity + '%');
 
@@ -99,13 +101,13 @@ function getUVIndex(lat, lon) {
     $.ajax({
         type: 'GET',
         url:
-            'http://api.openweathermap.org/data/2.5/uvi?appid=d902a298fbf27783a3efb9503fa1c23a&lat=' +
+            'https://api.openweathermap.org/data/2.5/uvi?appid=d902a298fbf27783a3efb9503fa1c23a&lat=' +
             lat +
             '&lon=' +
             lon,
         dataType: 'json',
         success: function(data) {
-            var uv = $('<p>').test('UV Index: ');
+            var uv = $('<p>').text('UV Index: ');
             var btn = $('<span>').addClass('btn btn-sm').text(data.value);
 
             if(data.value < 3) {
@@ -120,7 +122,7 @@ function getUVIndex(lat, lon) {
         },
     });
 }
-var histor = JSON.parse(window.localStorage.getItem('history')) || [];
+var history = JSON.parse(window.localStorage.getItem('history')) || [];
 if (history.length > 0) {
     searchWeather(history[history.length - 1]);
 }
