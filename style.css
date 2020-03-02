@@ -20,3 +20,10 @@ body {
     display: inline-block;
     margin-top: -15px;
     }
+    footer {
+        padding: 20px;
+        background-color: darkgrey;
+        position: absolute;
+         width: 100%;
+        text-align: center;
+    }
